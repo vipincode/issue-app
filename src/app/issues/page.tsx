@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { IssuePageLayout } from "@/components/issues/IssuePageLayout";
+import { IssuePageLayout } from "@/components/layout/IssuePageLayout";
 
 export default function IssuesListPage() {
   const router = useRouter();

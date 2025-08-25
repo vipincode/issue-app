@@ -1,7 +1,7 @@
 "use client";
 
-import { AuthLayout } from "@/components/auth/AuthLayout";
-import { ForgotPasswordForm } from "@/components/auth/ForgotPasswordForm";
+import { AuthLayout } from "@/components/layout/AuthLayout";
+import { ForgotPasswordForm } from "@/components/forms/ForgotPasswordForm";
 
 export default function ForgotPasswordPage() {
   return (
