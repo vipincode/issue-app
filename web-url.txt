@@ -1,3 +1,21 @@
-issue-app-kq3o.vercel.app
-
+https://issue-tracker-gamma-pied.vercel.app/
 https://issue-app.netlify.app/
+
+Update package.json
+
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "npm run prisma:generate && next build --turbopack",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma"
+  },
+
+
+Update Prisma Client
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}

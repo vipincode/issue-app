@@ -1,84 +1,79 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { IssuePageLayout } from "@/components/features/issues/IssuePageLayout";
+import { useRouter } from 'next/navigation';
+import { IssuePageLayout } from '@/components/features/issues/IssuePageLayout';
 
 export default function IssuesListPage() {
   const router = useRouter();
 
   const mockIssues = [
     {
-      id: "ISS-001",
-      title: "Login page not responsive on mobile devices",
-      priority: "high",
-      status: "open",
-      assignee: "jane.smith@example.com",
-      createdAt: "Jan 15, 2024",
-      labels: ["bug", "mobile", "ui"],
+      id: 'ISS-001',
+      title: 'Login page not responsive on mobile devices',
+      priority: 'high',
+      status: 'open',
+      assignee: 'jane.smith@example.com',
+      createdAt: 'Jan 15, 2024',
+      labels: ['bug', 'mobile', 'ui'],
     },
     {
-      id: "ISS-002",
-      title: "Add dark mode toggle to navigation",
-      priority: "medium",
-      status: "in-progress",
-      assignee: "john.doe@example.com",
-      createdAt: "Jan 14, 2024",
-      labels: ["feature", "ui"],
+      id: 'ISS-002',
+      title: 'Add dark mode toggle to navigation',
+      priority: 'medium',
+      status: 'in-progress',
+      assignee: 'john.doe@example.com',
+      createdAt: 'Jan 14, 2024',
+      labels: ['feature', 'ui'],
     },
     {
-      id: "ISS-003",
-      title: "Database connection timeout on heavy load",
-      priority: "critical",
-      status: "open",
+      id: 'ISS-003',
+      title: 'Database connection timeout on heavy load',
+      priority: 'critical',
+      status: 'open',
       assignee: null,
-      createdAt: "Jan 13, 2024",
-      labels: ["bug", "backend", "performance"],
+      createdAt: 'Jan 13, 2024',
+      labels: ['bug', 'backend', 'performance'],
     },
   ];
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "critical":
-        return "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-200";
-      case "high":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-200";
-      case "medium":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200";
-      case "low":
-        return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+      case 'critical':
+        return 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-200';
+      case 'high':
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-200';
+      case 'medium':
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200';
+      case 'low':
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "open":
-        return "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200";
-      case "in-progress":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200";
-      case "resolved":
-        return "bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-200";
-      case "closed":
-        return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+      case 'open':
+        return 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200';
+      case 'in-progress':
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200';
+      case 'resolved':
+        return 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-200';
+      case 'closed':
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
     }
   };
 
   return (
-    <IssuePageLayout
-      title="Issues"
-      subtitle="Manage and track all project issues"
-    >
+    <IssuePageLayout title="Issues" subtitle="Manage and track all project issues">
       <div className="space-y-6">
         {/* Header with Actions */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Filter:
-              </span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
               <select className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option>All Issues</option>
                 <option>Open</option>
@@ -88,9 +83,7 @@ export default function IssuesListPage() {
               </select>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Sort:
-              </span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">Sort:</span>
               <select className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option>Newest First</option>
                 <option>Oldest First</option>
@@ -100,21 +93,11 @@ export default function IssuesListPage() {
             </div>
           </div>
           <button
-            onClick={() => router.push("/issues/create")}
+            onClick={() => router.push('/issues/create')}
             className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            <svg
-              className="w-4 h-4 mr-2 inline"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
+            <svg className="w-4 h-4 mr-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
             New Issue
           </button>
@@ -131,25 +114,20 @@ export default function IssuesListPage() {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
-                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      #{issue.id}
-                    </span>
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400">#{issue.id}</span>
                     <span
                       className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(
                         issue.priority
                       )}`}
                     >
-                      {issue.priority.charAt(0).toUpperCase() +
-                        issue.priority.slice(1)}
+                      {issue.priority.charAt(0).toUpperCase() + issue.priority.slice(1)}
                     </span>
                     <span
                       className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(
                         issue.status
                       )}`}
                     >
-                      {issue.status
-                        .replace("-", " ")
-                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                      {issue.status.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
                     </span>
                   </div>
 
@@ -159,12 +137,7 @@ export default function IssuesListPage() {
 
                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center space-x-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -172,15 +145,10 @@ export default function IssuesListPage() {
                           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                         />
                       </svg>
-                      <span>{issue.assignee || "Unassigned"}</span>
+                      <span>{issue.assignee || 'Unassigned'}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -211,12 +179,7 @@ export default function IssuesListPage() {
                     }}
                     className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -232,12 +195,7 @@ export default function IssuesListPage() {
                     }}
                     className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -255,12 +213,7 @@ export default function IssuesListPage() {
         {/* Empty State (when no issues) */}
         {mockIssues.length === 0 && (
           <div className="text-center py-12">
-            <svg
-              className="w-12 h-12 mx-auto text-gray-400 mb-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+            <svg className="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -268,14 +221,10 @@ export default function IssuesListPage() {
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
-            <h3 className="text-lg font-medium text-foreground mb-2">
-              No issues found
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Get started by creating your first issue.
-            </p>
+            <h3 className="text-lg font-medium text-foreground mb-2">No issues found</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">Get started by creating your first issue.</p>
             <button
-              onClick={() => router.push("/issues/create")}
+              onClick={() => router.push('/issues/create')}
               className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Create Issue
@@ -285,9 +234,7 @@ export default function IssuesListPage() {
 
         {/* Pagination */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="text-sm text-gray-600 dark:text-gray-400">
-            Showing 1-3 of 3 issues
-          </div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">Showing 1-3 of 3 issues</div>
           <div className="flex space-x-2">
             <button
               disabled
@@ -309,7 +256,7 @@ export default function IssuesListPage() {
           <div className="flex justify-center space-x-4 text-sm">
             <button
               type="button"
-              onClick={() => router.push("/issues/create")}
+              onClick={() => router.push('/issues/create')}
               className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
             >
               Create New Issue
@@ -317,7 +264,7 @@ export default function IssuesListPage() {
             <span className="text-gray-300 dark:text-gray-600">|</span>
             <button
               type="button"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push('/login')}
               className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
             >
               Authentication Pages

@@ -1,23 +1,17 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { IssuePageLayout } from "@/components/features/issues/IssuePageLayout";
+import { useRouter } from 'next/navigation';
+import { IssuePageLayout } from '@/components/features/issues/IssuePageLayout';
 
 export default function CreateIssuePage() {
   const router = useRouter();
 
   return (
-    <IssuePageLayout
-      title="Create New Issue"
-      subtitle="Fill out the form below to create a new issue"
-    >
+    <IssuePageLayout title="Create New Issue" subtitle="Fill out the form below to create a new issue">
       <form className="space-y-6">
         {/* Title Field */}
         <div className="space-y-2">
-          <label
-            htmlFor="title"
-            className="block text-sm font-medium text-foreground"
-          >
+          <label htmlFor="title" className="block text-sm font-medium text-foreground">
             Issue Title *
           </label>
           <input
@@ -31,10 +25,7 @@ export default function CreateIssuePage() {
 
         {/* Description Field */}
         <div className="space-y-2">
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium text-foreground"
-          >
+          <label htmlFor="description" className="block text-sm font-medium text-foreground">
             Description *
           </label>
           <textarea
@@ -49,10 +40,7 @@ export default function CreateIssuePage() {
         {/* Priority and Status Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label
-              htmlFor="priority"
-              className="block text-sm font-medium text-foreground"
-            >
+            <label htmlFor="priority" className="block text-sm font-medium text-foreground">
               Priority
             </label>
             <select
@@ -70,10 +58,7 @@ export default function CreateIssuePage() {
           </div>
 
           <div className="space-y-2">
-            <label
-              htmlFor="status"
-              className="block text-sm font-medium text-foreground"
-            >
+            <label htmlFor="status" className="block text-sm font-medium text-foreground">
               Status
             </label>
             <select
@@ -94,10 +79,7 @@ export default function CreateIssuePage() {
         {/* Assignee and Due Date Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label
-              htmlFor="assignee"
-              className="block text-sm font-medium text-foreground"
-            >
+            <label htmlFor="assignee" className="block text-sm font-medium text-foreground">
               Assignee
             </label>
             <input
@@ -107,16 +89,11 @@ export default function CreateIssuePage() {
               className="w-full px-3 py-2 border rounded-lg text-sm bg-background text-foreground border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="user@example.com"
             />
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Optional - leave empty for unassigned
-            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Optional - leave empty for unassigned</p>
           </div>
 
           <div className="space-y-2">
-            <label
-              htmlFor="dueDate"
-              className="block text-sm font-medium text-foreground"
-            >
+            <label htmlFor="dueDate" className="block text-sm font-medium text-foreground">
               Due Date
             </label>
             <input
@@ -125,18 +102,13 @@ export default function CreateIssuePage() {
               type="date"
               className="w-full px-3 py-2 border rounded-lg text-sm bg-background text-foreground border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Optional - set a target completion date
-            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Optional - set a target completion date</p>
           </div>
         </div>
 
         {/* Labels Field */}
         <div className="space-y-2">
-          <label
-            htmlFor="labels"
-            className="block text-sm font-medium text-foreground"
-          >
+          <label htmlFor="labels" className="block text-sm font-medium text-foreground">
             Labels
           </label>
           <input
@@ -146,16 +118,14 @@ export default function CreateIssuePage() {
             className="w-full px-3 py-2 border rounded-lg text-sm bg-background text-foreground border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="bug, feature, urgent"
           />
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Comma-separated tags to categorize the issue
-          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Comma-separated tags to categorize the issue</p>
         </div>
 
         {/* Action Buttons */}
         <div className="flex justify-end space-x-3 pt-4">
           <button
             type="button"
-            onClick={() => router.push("/issues")}
+            onClick={() => router.push('/issues')}
             className="px-4 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-background hover:bg-gray-50 dark:hover:bg-gray-800 text-foreground rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Cancel
@@ -173,7 +143,7 @@ export default function CreateIssuePage() {
           <div className="flex justify-center space-x-4 text-sm">
             <button
               type="button"
-              onClick={() => router.push("/issues")}
+              onClick={() => router.push('/issues')}
               className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
             >
               View All Issues
@@ -181,7 +151,7 @@ export default function CreateIssuePage() {
             <span className="text-gray-300 dark:text-gray-600">|</span>
             <button
               type="button"
-              onClick={() => router.push("/issues/ISS-001")}
+              onClick={() => router.push('/issues/ISS-001')}
               className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
             >
               View Sample Issue
