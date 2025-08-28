@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "npm run prisma:generate && next build --turbopack",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+    "prisma:generate": "prisma generate --schema=./packages/db/schema.prisma"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
