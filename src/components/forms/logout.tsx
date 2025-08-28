@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { logout } from '@/app/(auth)/login/action';
