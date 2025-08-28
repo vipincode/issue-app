@@ -22,9 +22,9 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: Login) => {
-    console.log(data, 'login data');
     try {
       const result = await login(data);
+      console.log(result, 'login data');
       if (result.success) {
         toast.success('Login successful');
         router.push(routes.issues.home);
