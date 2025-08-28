@@ -30,16 +30,13 @@ export function RegisterForm() {
       // Handle successful submission
       if (result.success) {
         toast.success('Account created successfully');
-        router.push('/issues');
+        router.push(routes.issues.home);
+        console.log('Register result:', result);
       }
 
       return result;
     } catch (err) {
-      return {
-        success: false,
-        message: (err as Error).message || 'An error occurred',
-        errors: undefined,
-      };
+      toast.error((err as Error).message || 'An error occurred');
     }
   };
 

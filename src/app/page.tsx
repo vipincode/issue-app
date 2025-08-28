@@ -1,31 +1,19 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Header from '@/components/layout/header';
 
 export default function HomePage() {
   const router = useRouter();
 
   const authFeatures = [
     {
-      title: "Login",
-      description:
-        "Sign in to your existing account with email and password validation.",
+      title: 'Login',
+      description: 'Sign in to your existing account with email and password validation.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -34,19 +22,14 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/login",
-      color: "blue",
+      href: '/login',
+      color: 'blue',
     },
     {
-      title: "Register",
-      description: "Create a new account with comprehensive form validation.",
+      title: 'Register',
+      description: 'Create a new account with comprehensive form validation.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -55,19 +38,14 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/register",
-      color: "green",
+      href: '/register',
+      color: 'green',
     },
     {
-      title: "Forgot Password",
-      description: "Request a password reset link via email verification.",
+      title: 'Forgot Password',
+      description: 'Request a password reset link via email verification.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -76,19 +54,14 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/forgot-password",
-      color: "yellow",
+      href: '/forgot-password',
+      color: 'yellow',
     },
     {
-      title: "Reset Password",
-      description: "Set a new password with secure validation requirements.",
+      title: 'Reset Password',
+      description: 'Set a new password with secure validation requirements.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -97,23 +70,17 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/reset-password?token=demo-token",
-      color: "purple",
+      href: '/reset-password?token=demo-token',
+      color: 'purple',
     },
   ];
 
   const issueFeatures = [
     {
-      title: "View All Issues",
-      description:
-        "Browse and filter through all project issues with advanced search.",
+      title: 'View All Issues',
+      description: 'Browse and filter through all project issues with advanced search.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -122,48 +89,26 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/issues",
-      color: "blue",
+      href: '/issues',
+      color: 'blue',
     },
     {
-      title: "Create Issue",
-      description:
-        "Report new issues with detailed forms and priority settings.",
+      title: 'Create Issue',
+      description: 'Report new issues with detailed forms and priority settings.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4v16m8-8H4"
-          />
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
         </svg>
       ),
-      href: "/issues/create",
-      color: "green",
+      href: '/issues/create',
+      color: 'green',
     },
     {
-      title: "View Issue Details",
-      description:
-        "See comprehensive issue information with timeline and status.",
+      title: 'View Issue Details',
+      description: 'See comprehensive issue information with timeline and status.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-          />
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -172,19 +117,14 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/issues/ISS-001",
-      color: "indigo",
+      href: '/issues/ISS-001',
+      color: 'indigo',
     },
     {
-      title: "Edit Issue",
-      description: "Update issue details, status, priority, and assignments.",
+      title: 'Edit Issue',
+      description: 'Update issue details, status, priority, and assignments.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -193,19 +133,14 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/issues/ISS-001/edit",
-      color: "yellow",
+      href: '/issues/ISS-001/edit',
+      color: 'yellow',
     },
     {
-      title: "Delete Issue",
-      description: "Safely remove issues with confirmation and audit trail.",
+      title: 'Delete Issue',
+      description: 'Safely remove issues with confirmation and audit trail.',
       icon: (
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -214,31 +149,31 @@ export default function HomePage() {
           />
         </svg>
       ),
-      href: "/issues/ISS-001/delete",
-      color: "red",
+      href: '/issues/ISS-001/delete',
+      color: 'red',
     },
   ];
 
   const getIconColorClasses = (color: string) => {
     const colors = {
-      blue: "text-blue-600 dark:text-blue-400",
-      green: "text-green-600 dark:text-green-400",
-      yellow: "text-yellow-600 dark:text-yellow-400",
-      purple: "text-purple-600 dark:text-purple-400",
-      indigo: "text-indigo-600 dark:text-indigo-400",
-      red: "text-red-600 dark:text-red-400",
+      blue: 'text-blue-600 dark:text-blue-400',
+      green: 'text-green-600 dark:text-green-400',
+      yellow: 'text-yellow-600 dark:text-yellow-400',
+      purple: 'text-purple-600 dark:text-purple-400',
+      indigo: 'text-indigo-600 dark:text-indigo-400',
+      red: 'text-red-600 dark:text-red-400',
     };
     return colors[color as keyof typeof colors] || colors.blue;
   };
 
   const getIconBgClasses = (color: string) => {
     const colors = {
-      blue: "bg-blue-100 dark:bg-blue-900/20",
-      green: "bg-green-100 dark:bg-green-900/20",
-      yellow: "bg-yellow-100 dark:bg-yellow-900/20",
-      purple: "bg-purple-100 dark:bg-purple-900/20",
-      indigo: "bg-indigo-100 dark:bg-indigo-900/20",
-      red: "bg-red-100 dark:bg-red-900/20",
+      blue: 'bg-blue-100 dark:bg-blue-900/20',
+      green: 'bg-green-100 dark:bg-green-900/20',
+      yellow: 'bg-yellow-100 dark:bg-yellow-900/20',
+      purple: 'bg-purple-100 dark:bg-purple-900/20',
+      indigo: 'bg-indigo-100 dark:bg-indigo-900/20',
+      red: 'bg-red-100 dark:bg-red-900/20',
     };
     return colors[color as keyof typeof colors] || colors.blue;
   };
@@ -246,57 +181,24 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="space-y-1">
-              <h1 className="text-2xl font-bold tracking-tight">
-                Issue Management System
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Complete authentication and issue tracking solution
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button variant="outline" onClick={() => router.push("/login")}>
-                Sign In
-              </Button>
-              <Button onClick={() => router.push("/register")}>
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
           <div className="space-y-4">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Streamline Your Project Management
-            </h2>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Streamline Your Project Management</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A comprehensive platform featuring secure authentication and
-              powerful issue tracking. Manage your projects efficiently with our
-              intuitive interface and robust feature set.
+              A comprehensive platform featuring secure authentication and powerful issue tracking. Manage your projects
+              efficiently with our intuitive interface and robust feature set.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              size="lg"
-              onClick={() => router.push("/issues/create")}
-              className="text-lg px-8 py-6"
-            >
+            <Button size="lg" onClick={() => router.push('/issues/create')} className="text-lg px-8 py-6">
               Create Your First Issue
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => router.push("/issues")}
-              className="text-lg px-8 py-6"
-            >
+            <Button variant="outline" size="lg" onClick={() => router.push('/issues')} className="text-lg px-8 py-6">
               Explore Issues
             </Button>
           </div>
@@ -305,12 +207,10 @@ export default function HomePage() {
         {/* Authentication Features Section */}
         <section className="mb-16 space-y-12">
           <div className="text-center space-y-4">
-            <h3 className="text-3xl font-bold tracking-tight">
-              Authentication System
-            </h3>
+            <h3 className="text-3xl font-bold tracking-tight">Authentication System</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Secure user authentication with comprehensive validation, password
-              management, and user-friendly error handling.
+              Secure user authentication with comprehensive validation, password management, and user-friendly error
+              handling.
             </p>
           </div>
 
@@ -327,18 +227,12 @@ export default function HomePage() {
                       feature.color
                     )}`}
                   >
-                    <div className={getIconColorClasses(feature.color)}>
-                      {feature.icon}
-                    </div>
+                    <div className={getIconColorClasses(feature.color)}>{feature.icon}</div>
                   </div>
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </CardTitle>
+                  <CardTitle className="group-hover:text-primary transition-colors">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <CardDescription className="leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
+                  <CardDescription className="leading-relaxed">{feature.description}</CardDescription>
                   <div className="flex items-center text-sm text-primary group-hover:text-primary/80 transition-colors">
                     <span>Try it out</span>
                     <svg
@@ -347,12 +241,7 @@ export default function HomePage() {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
                 </CardContent>
@@ -364,12 +253,10 @@ export default function HomePage() {
         {/* Issue Management Features Section */}
         <section className="mb-16 space-y-12">
           <div className="text-center space-y-4">
-            <h3 className="text-3xl font-bold tracking-tight">
-              Issue Management
-            </h3>
+            <h3 className="text-3xl font-bold tracking-tight">Issue Management</h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Complete CRUD operations for issue tracking with advanced
-              filtering, priority management, and team collaboration features.
+              Complete CRUD operations for issue tracking with advanced filtering, priority management, and team
+              collaboration features.
             </p>
           </div>
 
@@ -386,18 +273,12 @@ export default function HomePage() {
                       feature.color
                     )}`}
                   >
-                    <div className={getIconColorClasses(feature.color)}>
-                      {feature.icon}
-                    </div>
+                    <div className={getIconColorClasses(feature.color)}>{feature.icon}</div>
                   </div>
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </CardTitle>
+                  <CardTitle className="group-hover:text-primary transition-colors">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <CardDescription className="leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
+                  <CardDescription className="leading-relaxed">{feature.description}</CardDescription>
                   <div className="flex items-center text-sm text-primary group-hover:text-primary/80 transition-colors">
                     <span>Explore</span>
                     <svg
@@ -406,12 +287,7 @@ export default function HomePage() {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
                 </CardContent>
@@ -425,9 +301,7 @@ export default function HomePage() {
           <Card className="p-8">
             <div className="space-y-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold tracking-tight mb-2">
-                  Why Choose Our Platform?
-                </h3>
+                <h3 className="text-2xl font-bold tracking-tight mb-2">Why Choose Our Platform?</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center space-y-4">
@@ -449,8 +323,7 @@ export default function HomePage() {
                   <div className="space-y-2">
                     <h4 className="text-lg font-semibold">Secure & Reliable</h4>
                     <p className="text-muted-foreground">
-                      Built with security best practices, comprehensive
-                      validation, and error handling.
+                      Built with security best practices, comprehensive validation, and error handling.
                     </p>
                   </div>
                 </div>
@@ -474,8 +347,7 @@ export default function HomePage() {
                   <div className="space-y-2">
                     <h4 className="text-lg font-semibold">Fast & Responsive</h4>
                     <p className="text-muted-foreground">
-                      Optimized for performance with responsive design that
-                      works on all devices.
+                      Optimized for performance with responsive design that works on all devices.
                     </p>
                   </div>
                 </div>
@@ -497,12 +369,9 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-lg font-semibold">
-                      Team Collaboration
-                    </h4>
+                    <h4 className="text-lg font-semibold">Team Collaboration</h4>
                     <p className="text-muted-foreground">
-                      Designed for teams with assignment features, status
-                      tracking, and clear workflows.
+                      Designed for teams with assignment features, status tracking, and clear workflows.
                     </p>
                   </div>
                 </div>
@@ -514,12 +383,9 @@ export default function HomePage() {
         {/* Quick Start Guide */}
         <section className="mb-16 space-y-8">
           <div className="text-center space-y-4">
-            <h3 className="text-2xl font-bold tracking-tight">
-              Get Started in 3 Easy Steps
-            </h3>
+            <h3 className="text-2xl font-bold tracking-tight">Get Started in 3 Easy Steps</h3>
             <p className="text-muted-foreground">
-              Follow these simple steps to begin managing your projects
-              effectively.
+              Follow these simple steps to begin managing your projects effectively.
             </p>
           </div>
 
@@ -531,15 +397,10 @@ export default function HomePage() {
               <div className="space-y-2">
                 <h4 className="text-lg font-semibold">Create Account</h4>
                 <p className="text-muted-foreground">
-                  Sign up with your email and create a secure password to get
-                  started.
+                  Sign up with your email and create a secure password to get started.
                 </p>
               </div>
-              <Button
-                variant="link"
-                onClick={() => router.push("/register")}
-                className="p-0 h-auto font-medium"
-              >
+              <Button variant="link" onClick={() => router.push('/register')} className="p-0 h-auto font-medium">
                 Register Now →
               </Button>
             </div>
@@ -551,15 +412,10 @@ export default function HomePage() {
               <div className="space-y-2">
                 <h4 className="text-lg font-semibold">Create Issues</h4>
                 <p className="text-muted-foreground">
-                  Report bugs, request features, or track tasks with detailed
-                  issue forms.
+                  Report bugs, request features, or track tasks with detailed issue forms.
                 </p>
               </div>
-              <Button
-                variant="link"
-                onClick={() => router.push("/issues/create")}
-                className="p-0 h-auto font-medium"
-              >
+              <Button variant="link" onClick={() => router.push('/issues/create')} className="p-0 h-auto font-medium">
                 Create Issue →
               </Button>
             </div>
@@ -571,15 +427,10 @@ export default function HomePage() {
               <div className="space-y-2">
                 <h4 className="text-lg font-semibold">Track Progress</h4>
                 <p className="text-muted-foreground">
-                  Monitor issue status, assign team members, and manage
-                  priorities effectively.
+                  Monitor issue status, assign team members, and manage priorities effectively.
                 </p>
               </div>
-              <Button
-                variant="link"
-                onClick={() => router.push("/issues")}
-                className="p-0 h-auto font-medium"
-              >
+              <Button variant="link" onClick={() => router.push('/issues')} className="p-0 h-auto font-medium">
                 View Issues →
               </Button>
             </div>
@@ -596,30 +447,28 @@ export default function HomePage() {
               <div className="space-y-2">
                 <Button
                   variant="link"
-                  onClick={() => router.push("/login")}
+                  onClick={() => router.push('/login')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Login
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() => router.push("/register")}
+                  onClick={() => router.push('/register')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Register
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() => router.push("/forgot-password")}
+                  onClick={() => router.push('/forgot-password')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Forgot Password
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() =>
-                    router.push("/reset-password?token=demo-token")
-                  }
+                  onClick={() => router.push('/reset-password?token=demo-token')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Reset Password
@@ -632,28 +481,28 @@ export default function HomePage() {
               <div className="space-y-2">
                 <Button
                   variant="link"
-                  onClick={() => router.push("/issues")}
+                  onClick={() => router.push('/issues')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   All Issues
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() => router.push("/issues/create")}
+                  onClick={() => router.push('/issues/create')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Create Issue
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() => router.push("/issues/ISS-001")}
+                  onClick={() => router.push('/issues/ISS-001')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   View Sample Issue
                 </Button>
                 <Button
                   variant="link"
-                  onClick={() => router.push("/issues/ISS-001/edit")}
+                  onClick={() => router.push('/issues/ISS-001/edit')}
                   className="p-0 h-auto justify-start text-muted-foreground hover:text-foreground"
                 >
                   Edit Issue
@@ -674,8 +523,7 @@ export default function HomePage() {
 
           <div className="border-t mt-8 pt-8 text-center">
             <p className="text-muted-foreground">
-              © 2024 Issue Management System. A comprehensive platform for
-              project management and team collaboration.
+              © 2024 Issue Management System. A comprehensive platform for project management and team collaboration.
             </p>
           </div>
         </div>

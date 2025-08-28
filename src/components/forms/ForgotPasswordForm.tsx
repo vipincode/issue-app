@@ -1,19 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { ro } from "date-fns/locale";
-import { routes } from "@/lib/routes";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { useForm } from 'react-hook-form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { routes } from '@/lib/routes';
+import { useRouter } from 'next/navigation';
 
 export function ForgotPasswordForm() {
   const router = useRouter();
@@ -40,11 +32,7 @@ export function ForgotPasswordForm() {
         </Button>
 
         <div className="text-center">
-          <Button
-            variant="link"
-            type="button"
-            onClick={() => router.push(routes.login)}
-          >
+          <Button variant="link" type="button" onClick={() => router.push(routes.login)}>
             Back to sign in
           </Button>
         </div>

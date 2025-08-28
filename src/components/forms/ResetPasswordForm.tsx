@@ -1,18 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { routes } from "@/lib/routes";
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { routes } from '@/lib/routes';
+import { Input } from '@/components/ui/input';
 
 export function ResetPasswordForm() {
   const router = useRouter();
@@ -22,9 +15,7 @@ export function ResetPasswordForm() {
     <Form {...form}>
       <form className="space-y-6">
         <div className="text-center mb-6">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Enter your new password below.
-          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Enter your new password below.</p>
         </div>
 
         <FormField
@@ -61,11 +52,7 @@ export function ResetPasswordForm() {
         </Button>
 
         <div className="text-center">
-          <Button
-            variant="link"
-            type="button"
-            onClick={() => router.push(routes.login)}
-          >
+          <Button variant="link" type="button" onClick={() => router.push(routes.login)}>
             Back to sign in
           </Button>
         </div>

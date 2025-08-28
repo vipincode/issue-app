@@ -1,4 +1,5 @@
 import { JWTPayload } from '@/dal/users/user.types';
+import { AUTH_TOKEN } from '@/types/auth';
 import { compare, hash, genSalt } from 'bcrypt';
 import * as jose from 'jose';
 import { cookies } from 'next/headers';
@@ -59,7 +60,7 @@ export async function createSession(userId: string) {
     // Store JWT in a cookie
     const cookieStore = await cookies();
     cookieStore.set({
-      name: 'auth_token',
+      name: AUTH_TOKEN.ACCESS,
       value: token,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -79,7 +80,7 @@ export async function createSession(userId: string) {
 export const getSession = cache(async () => {
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get('auth_token')?.value;
+    const token = cookieStore.get(AUTH_TOKEN.ACCESS)?.value;
 
     if (!token) return null;
     const payload = await verifyJWT(token);
@@ -100,5 +101,5 @@ export const getSession = cache(async () => {
 // Delete session by clearing the JWT cookie
 export async function deleteSession() {
   const cookieStore = await cookies();
-  cookieStore.delete('auth_token');
+  cookieStore.delete(AUTH_TOKEN.ACCESS);
 }
