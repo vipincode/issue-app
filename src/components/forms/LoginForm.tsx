@@ -22,6 +22,7 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: Login) => {
+    console.log(data, 'login data');
     try {
       const result = await login(data);
       if (result.success) {
