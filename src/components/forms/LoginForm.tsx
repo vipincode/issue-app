@@ -13,13 +13,30 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
+import { Login, LoginSchema } from "@/schemas/user.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function LoginForm() {
   const router = useRouter();
-  const form = useForm();
+  const form = useForm<Login>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data: Login) => {
+    console.log(data);
+  };
+
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form
+        autoComplete="off"
+        className="space-y-6"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <FormField
           control={form.control}
           name="email"
@@ -37,7 +54,7 @@ export function LoginForm() {
 
         <FormField
           control={form.control}
-          name="email"
+          name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>

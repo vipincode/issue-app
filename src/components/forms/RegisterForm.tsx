@@ -1,26 +1,51 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { routes } from "@/lib/routes";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { routes } from '@/lib/routes';
+import { User, UserSchema } from '@/schemas/user.schema';
+import { register } from '@/app/(auth)/register/action';
+import { toast } from 'sonner';
 
 export function RegisterForm() {
   const router = useRouter();
-  const form = useForm();
+  const form = useForm<User>({
+    resolver: zodResolver(UserSchema),
+    defaultValues: {
+      email: '',
+      name: '',
+      password: '',
+      confirmPassword: '',
+    },
+  });
+
+  const onSubmit = async (data: User) => {
+    try {
+      const result = await register(data);
+
+      // Handle successful submission
+      if (result.success) {
+        toast.success('Account created successfully');
+        router.push('/issues');
+      }
+
+      return result;
+    } catch (err) {
+      return {
+        success: false,
+        message: (err as Error).message || 'An error occurred',
+        errors: undefined,
+      };
+    }
+  };
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form autoComplete="off" className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="name"
@@ -85,14 +110,8 @@ export function RegisterForm() {
         </Button>
 
         <div className="text-center">
-          <span className="text-sm text-gray-600 dark:text-gray-400">
-            Already have an account?{" "}
-          </span>
-          <Button
-            variant="link"
-            type="button"
-            onClick={() => router.push(routes.login)}
-          >
+          <span className="text-sm text-gray-600 dark:text-gray-400">Already have an account? </span>
+          <Button variant="link" type="button" onClick={() => router.push(routes.login)}>
             Sign in
           </Button>
         </div>

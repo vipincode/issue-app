@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginForm } from "@/components/forms/LoginForm";
-import { AuthLayout } from "@/components/layout/AuthLayout";
+import { AuthLayout } from "@/components/features/users/AuthLayout";
 
 export default function LoginPage() {
   return (
