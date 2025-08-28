@@ -34,10 +34,10 @@ export function ResetPasswordForm() {
         />
         <FormField
           control={form.control}
-          name="Confirm password"
+          name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Confirm password </FormLabel>
               <FormControl>
                 <Input placeholder="••••••••" {...field} type="password" />
               </FormControl>
