@@ -15,7 +15,11 @@ export const REFRESH_THRESHOLD = 24 * 60 * 60; // 24 hours in seconds
 export const alg = 'HS256';
 
 // JWT secret
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
+if (!process.env.JWT_SECRET) {
+  console.error('JWT_SECRET is not defined in environment variables!');
+  throw new Error('JWT_SECRET is not defined in environment variables!');
+}
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret');
 
 // Hash a password
 export const hashPassword = async (password: string) => {
