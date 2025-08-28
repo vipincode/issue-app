@@ -3,17 +3,30 @@
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { routes } from '@/lib/routes';
 import { Input } from '@/components/ui/input';
+import { ResetPassword, ResetPasswordSchema } from '@/schemas/user.schema';
 
 export function ResetPasswordForm() {
   const router = useRouter();
-  const form = useForm();
+  const form = useForm<ResetPassword>({
+    resolver: zodResolver(ResetPasswordSchema),
+    defaultValues: {
+      password: '',
+      confirmPassword: '',
+    },
+  });
+
+  const onSubmit = (data: ResetPassword) => {
+    // Handle password reset logic here
+    console.log(data);
+  };
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="text-center mb-6">
           <p className="text-sm text-gray-600 dark:text-gray-400">Enter your new password below.</p>
         </div>

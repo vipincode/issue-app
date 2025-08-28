@@ -2,17 +2,29 @@
 
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { routes } from '@/lib/routes';
 import { useRouter } from 'next/navigation';
+import { ForgotPassword, ForgotPasswordSchema } from '@/schemas/user.schema';
 
 export function ForgotPasswordForm() {
   const router = useRouter();
-  const form = useForm();
+  const form = useForm<ForgotPassword>({
+    resolver: zodResolver(ForgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
+
+  const onSubmit = (data: ForgotPassword) => {
+    console.log(data);
+  };
+
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="email"
