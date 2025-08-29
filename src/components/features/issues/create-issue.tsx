@@ -15,7 +15,7 @@ import { toast } from 'sonner';
 import { routes } from '@/lib/routes';
 import { issue } from '@/app/(issues)/issues/action';
 
-const CreateIssue = ({ userId }: { userId: string }) => {
+const CreateIssue = () => {
   const router = useRouter();
 
   const form = useForm<Issue>({
@@ -33,13 +33,11 @@ const CreateIssue = ({ userId }: { userId: string }) => {
 
   const onSubmit = async (data: Issue) => {
     try {
-      const result = await issue(data, userId);
-      if (!result.success) {
+      const result = await issue(data);
+      if (result.success) {
         toast.success('Issue created successfully');
         router.push(routes.issues.home);
       }
-
-      console.log(result, userId);
     } catch (error) {
       console.error('Error creating issue:', error);
     }

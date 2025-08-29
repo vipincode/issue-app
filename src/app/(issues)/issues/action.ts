@@ -1,13 +1,22 @@
 'use server';
 
 import { createIssue } from '@/dal/issues/issue.dal';
+import { getCurrentUser } from '@/dal/users/user.dal';
 import { ActionResponse } from '@/dal/users/user.types';
 import { mockDelay } from '@/lib/utils';
 import { Issue, issueSchema } from '@/schemas/issue.schema';
 
-export const issue = async (data: Issue, userId: string): Promise<ActionResponse> => {
+export const issue = async (data: Issue): Promise<ActionResponse> => {
   try {
     await mockDelay(700);
+
+    const user = await getCurrentUser();
+    if (!user) {
+      return {
+        success: false,
+        message: 'You must be logged in to create an issue.',
+      };
+    }
 
     const validationResult = issueSchema.safeParse(data);
     if (!validationResult.success) {
@@ -18,7 +27,7 @@ export const issue = async (data: Issue, userId: string): Promise<ActionResponse
       };
     }
 
-    const result = await createIssue(data, userId);
+    const result = await createIssue(data, user.id);
     if (!result) {
       return { success: false, message: 'Failed to create issue' };
     }
