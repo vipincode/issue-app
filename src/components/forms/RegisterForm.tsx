@@ -31,7 +31,6 @@ export function RegisterForm() {
       if (result.success) {
         toast.success('Account created successfully');
         router.push(routes.issues.home);
-        console.log('Register result:', result);
       }
 
       return result;

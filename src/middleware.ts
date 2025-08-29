@@ -3,7 +3,7 @@ import { AUTH_TOKEN } from './types/auth';
 
 // Public routes
 const authRoutes = ['/login', '/register'];
-const protectedRoutes = ['/issues/:path*'];
+const protectedRoutes = ['/issues'];
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -17,7 +17,6 @@ export function middleware(request: NextRequest) {
   if (!token && protectedRoutes.some((route) => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
-
   // Otherwise allow (public pages always allowed)
   return NextResponse.next();
 }

@@ -2,6 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { IssuePageLayout } from '@/components/features/issues/IssuePageLayout';
+import { getPriorityColor, getStatusColor } from './utils';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function IssuesListPage() {
   const router = useRouter();
@@ -36,36 +39,6 @@ export default function IssuesListPage() {
     },
   ];
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'critical':
-        return 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-200';
-      case 'high':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-200';
-      case 'medium':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200';
-      case 'low':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'open':
-        return 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200';
-      case 'in-progress':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200';
-      case 'resolved':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-200';
-      case 'closed':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-    }
-  };
-
   return (
     <IssuePageLayout title="Issues" subtitle="Manage and track all project issues">
       <div className="space-y-6">
@@ -74,33 +47,39 @@ export default function IssuesListPage() {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
-              <select className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>All Issues</option>
-                <option>Open</option>
-                <option>In Progress</option>
-                <option>Resolved</option>
-                <option>Closed</option>
-              </select>
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="All Issues" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="open">Open</SelectItem>
+                  <SelectItem value="in-progress">In Progress</SelectItem>
+                  <SelectItem value="resolved">Resolved</SelectItem>
+                  <SelectItem value="closed">Closed</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">Sort:</span>
-              <select className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>Newest First</option>
-                <option>Oldest First</option>
-                <option>Priority</option>
-                <option>Status</option>
-              </select>
+              <Select>
+                <SelectTrigger className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-background text-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <SelectValue placeholder="Newest First" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">Newest First</SelectItem>
+                  <SelectItem value="oldest">Oldest First</SelectItem>
+                  <SelectItem value="priority">Priority</SelectItem>
+                  <SelectItem value="status">Status</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-          <button
-            onClick={() => router.push('/issues/create')}
-            className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            <svg className="w-4 h-4 mr-2 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <Button onClick={() => router.push('/issues/create')}>
+            <svg className="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
             New Issue
-          </button>
+          </Button>
         </div>
 
         {/* Issues List */}
