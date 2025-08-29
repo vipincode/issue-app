@@ -21,3 +21,13 @@ export const createIssue = async (data: Issue, userId: string) => {
     return null;
   }
 };
+
+export const getAllIssue = async () => {
+  try {
+    const issues = await prisma.issue.findMany();
+    return issues;
+  } catch (error) {
+    console.error('Error fetching issues:', error);
+    return [];
+  }
+};

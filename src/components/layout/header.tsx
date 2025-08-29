@@ -20,8 +20,8 @@ const Header = ({ user }: { user: User | null }) => {
             <div className="flex items-center gap-3 flex-row">
               <Bug size={48} />
               <div>
-                <h1 className="text-2xl font-bold tracking-tight">Issue Management System</h1>
-                <p className="text-sm text-muted-foreground">Complete authentication and issue tracking solution</p>
+                <h1 className="text-2xl font-bold tracking-tight">Issue Management</h1>
+                <p className="text-sm text-muted-foreground">Complete issue tracking solution</p>
               </div>
             </div>
           </Link>

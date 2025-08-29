@@ -1,3 +1,5 @@
+import { Issue } from '@/schemas/issue.schema';
+
 // JWT types
 export interface JWTPayload {
   userId: string;

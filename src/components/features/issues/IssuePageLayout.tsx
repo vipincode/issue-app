@@ -8,7 +8,7 @@ export function IssuePageLayout({ children, title, subtitle }: IssuePageLayoutPr
   return (
     <div className="w-full space-y-8 max-w-[960px] mx-auto">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-foreground">{title}</h2>
+        <h2 className="text-3xl font-bold text-foreground uppercase">{title}</h2>
         {subtitle && <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>}
       </div>
       <div className="bg-background shadow-lg rounded-lg px-8 py-6 border border-gray-200 dark:border-gray-700">
