@@ -162,6 +162,7 @@ const CreateIssue = () => {
           </div>
 
           {/* Labels Field */}
+
           <FormField
             control={form.control}
             name="labels"
@@ -171,7 +172,7 @@ const CreateIssue = () => {
                 <FormControl>
                   <Input
                     placeholder="bug, feature, urgent"
-                    value={Array.isArray(field.value) ? field.value.join(', ') : ''}
+                    value={Array.isArray(field.value) ? field.value.join(', ') : field.value || ''}
                     onChange={(e) => {
                       // let the user type freely
                       field.onChange(e.target.value);
