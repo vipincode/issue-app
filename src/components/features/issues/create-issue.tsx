@@ -92,7 +92,6 @@ const CreateIssue = () => {
                         <SelectValue placeholder="Select priority" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="LIGHT">Light</SelectItem>
                         <SelectItem value="LOW">Low</SelectItem>
                         <SelectItem value="MEDIUM">Medium</SelectItem>
                         <SelectItem value="HIGH">High</SelectItem>
@@ -209,8 +208,8 @@ const CreateIssue = () => {
                 View All Issues
               </Button>
               <span className="text-gray-300 dark:text-gray-600">|</span>
-              <Button type="button" onClick={() => router.push('/issues/ISS-001')} variant="link">
-                View Sample Issue
+              <Button type="button" onClick={() => router.push(routes.home)} variant="link">
+                Back to home
               </Button>
             </div>
           </div>

@@ -8,6 +8,9 @@ import { getPriorityColor, getStatusColor } from '@/app/(issues)/issues/utils';
 import { Issue } from '@/generated/prisma';
 import { Plus } from 'lucide-react';
 import { format } from 'date-fns';
+import { useTransition } from 'react';
+import { deleteIssueById } from '@/app/(issues)/issues/action';
+import { toast } from 'sonner';
 
 interface IssuesListProps {
   issues: Issue[];
@@ -15,6 +18,26 @@ interface IssuesListProps {
 
 export default function IssuesList({ issues }: IssuesListProps) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleDelete = (id: string) => {
+    startTransition(async () => {
+      try {
+        const result = await deleteIssueById(id);
+
+        if (!result.success) {
+          throw new Error(result.error || 'Failed to delete issue');
+        }
+
+        toast.success('Issue deleted successfully');
+        router.push(`/issues/${id}/delete`);
+        router.refresh();
+      } catch (error) {
+        toast.error('Failed to delete issue');
+        console.error('Error deleting issue:', error);
+      }
+    });
+  };
 
   return (
     <IssuePageLayout title="Issues" subtitle="Manage and track all project issues">
@@ -147,10 +170,8 @@ export default function IssuesList({ issues }: IssuesListProps) {
                     </svg>
                   </button>
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      router.push(`/issues/${issue.id}/delete`);
-                    }}
+                    onClick={() => handleDelete(issue.id)}
+                    disabled={isPending}
                     className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

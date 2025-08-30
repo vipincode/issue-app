@@ -1,7 +1,7 @@
 'use server';
 
-import { createIssue, getAllIssue } from '@/dal/issues/issue.dal';
-import { IssuesResponse } from '@/dal/issues/issue.type';
+import { createIssue, deleteIssue, getAllIssue, getIssueById, updateIssue } from '@/dal/issues/issue.dal';
+import { IssueResponse, IssuesResponse } from '@/dal/issues/issue.type';
 import { getCurrentUser } from '@/dal/users/user.dal';
 import { mockDelay } from '@/lib/utils';
 import { Issue, issueSchema } from '@/schemas/issue.schema';
@@ -14,7 +14,8 @@ export const issue = async (data: Issue): Promise<IssuesResponse> => {
     if (!user) {
       return {
         success: false,
-        message: 'You must be logged in to create an issue.',
+        message: 'Unauthorized access',
+        error: 'Unauthorized',
       };
     }
 
@@ -64,6 +65,130 @@ export const getIssues = async (): Promise<IssuesResponse> => {
     return {
       success: false,
       message: 'An error occurred while fetching issues',
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+};
+
+export const getIssue = async (id: string): Promise<IssueResponse> => {
+  try {
+    await mockDelay(500);
+    const issue = await getIssueById(id);
+    if (!issue) {
+      return {
+        success: false,
+        message: 'Issue not found',
+      };
+    }
+    return {
+      success: true,
+      message: 'Issue fetched successfully',
+      data: issue,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: 'An error occurred while fetching the issue',
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+};
+
+export const update = async (id: string, data: Partial<Issue>): Promise<IssuesResponse> => {
+  try {
+    await mockDelay(700);
+
+    const user = await getCurrentUser();
+    if (!user) {
+      return {
+        success: false,
+        message: 'Unauthorized access',
+        error: 'Unauthorized',
+      };
+    }
+
+    const validationResult = issueSchema.partial().safeParse(data);
+    if (!validationResult.success) {
+      return {
+        success: false,
+        message: 'Invalid issue data',
+        errors: validationResult.error.flatten().fieldErrors,
+      };
+    }
+
+    /**
+     * After Zod validation, validatedData is typed as Partial<Issue>.
+     * Some fields might be missing (undefined).
+     * Prisma’s update() requires you to pass only the fields you actually want to update.
+     * So you’re manually building an updateData object that includes only the defined fields.
+     */
+
+    const validatedData = validationResult.data;
+
+    // ✅ Build updateData with only defined fields
+    const updateData: Partial<Issue> = Object.fromEntries(
+      Object.entries(validatedData).filter(([_, value]) => value !== undefined)
+    );
+
+    if (Object.keys(updateData).length === 0) {
+      return {
+        success: false,
+        message: 'No fields provided for update',
+      };
+    }
+
+    const issue = await updateIssue(id, updateData);
+    if (!issue) {
+      return {
+        success: false,
+        message: 'Failed to update issue',
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Issue updated successfully',
+      data: [issue],
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: 'An error occurred while updating the issue',
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+};
+
+export const deleteIssueById = async (id: string): Promise<IssuesResponse> => {
+  try {
+    await mockDelay(700);
+
+    const user = await getCurrentUser();
+    if (!user) {
+      return {
+        success: false,
+        message: 'Unauthorized access',
+        error: 'Unauthorized',
+      };
+    }
+
+    const issue = await deleteIssue(id);
+    if (!issue) {
+      return {
+        success: false,
+        message: 'Failed to delete issue',
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Issue deleted successfully',
+      data: [issue],
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: 'An error occurred while deleting the issue',
       error: error instanceof Error ? error.message : String(error),
     };
   }

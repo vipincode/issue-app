@@ -8,6 +8,7 @@ import Logout from '../forms/logout';
 import { Bug } from 'lucide-react';
 import Link from 'next/link';
 import { User } from '@/generated/prisma';
+import { ModeToggle } from './mode-button';
 
 const Header = ({ user }: { user: User | null }) => {
   const router = useRouter();
@@ -33,6 +34,7 @@ const Header = ({ user }: { user: User | null }) => {
             )}
             <Button onClick={() => router.push(routes.register)}>Get Started</Button>
             {user?.id && <Logout />}
+            <ModeToggle />
           </div>
         </div>
       </div>
