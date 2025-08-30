@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { User } from '@/generated/prisma';
 import { ModeToggle } from './mode-button';
 
-const Header = ({ user }: { user: User | null }) => {
+const Header = ({ user }: { user: Omit<User, 'password'> | null }) => {
   const router = useRouter();
 
   return (

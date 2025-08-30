@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { routes } from '@/lib/routes';
 import { issue } from '@/app/(issues)/issues/action';
+import React from 'react';
 
 const CreateIssue = () => {
   const router = useRouter();
@@ -170,7 +171,7 @@ const CreateIssue = () => {
                 <FormControl>
                   <Input
                     placeholder="bug, feature, urgent"
-                    value={Array.isArray(field.value) ? field.value.join(', ') : field.value || ''}
+                    value={Array.isArray(field.value) ? field.value.join(', ') : ''}
                     onChange={(e) => {
                       // let the user type freely
                       field.onChange(e.target.value);

@@ -37,6 +37,9 @@ export const getCurrentUser = cache(async () => {
       where: {
         id: session.userId,
       },
+      omit: {
+        password: true,
+      },
     });
 
     return user || null;

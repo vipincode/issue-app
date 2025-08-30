@@ -81,6 +81,11 @@ export async function createSession(userId: string) {
 
 // Get current session from JWT
 export const getSession = cache(async () => {
+  // Prevent reading cookies during static prerender
+  if (typeof window === 'undefined' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return null;
+  }
+
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get(AUTH_TOKEN.ACCESS)?.value;

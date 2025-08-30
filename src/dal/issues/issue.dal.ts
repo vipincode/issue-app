@@ -1,7 +1,8 @@
 import { prisma } from '@/lib/prisma';
-import { mockDelay } from '@/lib/utils';
 import { Issue } from '@/schemas/issue.schema';
 import { cache } from 'react';
+import { GetIssuesOptions } from './issue.type';
+import { Prisma } from '@/generated/prisma';
 
 export const createIssue = async (data: Issue, userId: string) => {
   try {
@@ -24,13 +25,54 @@ export const createIssue = async (data: Issue, userId: string) => {
   }
 };
 
-export const getAllIssue = cache(async () => {
+export const getAllIssue = cache(async ({ page = 1, pageSize = 10, sort, status }: GetIssuesOptions) => {
   try {
-    const issues = await prisma.issue.findMany();
-    return issues;
+    let orderBy: Prisma.IssueOrderByWithRelationInput | Prisma.IssueOrderByWithRelationInput[] | undefined;
+
+    if (sort && sort.sortBy) {
+      switch (sort.sortBy) {
+        case 'status':
+          orderBy = { status: sort.order || 'asc' };
+          break;
+        case 'priority':
+          orderBy = { priority: sort.order || 'asc' };
+          break;
+        case 'createdAt':
+          orderBy = { createdAt: sort.order || 'desc' }; // default newest
+          break;
+      }
+    } else {
+      orderBy = { createdAt: 'desc' };
+    }
+
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
+
+    const [issues, totalCount] = await Promise.all([
+      prisma.issue.findMany({
+        where: status ? { status } : {},
+        orderBy,
+        skip,
+        take,
+      }),
+      prisma.issue.count({ where: status ? { status } : {} }),
+    ]);
+
+    return {
+      data: issues,
+      pagination: {
+        total: totalCount,
+        page,
+        pageSize,
+        totalPages: Math.ceil(totalCount / pageSize),
+      },
+    };
   } catch (error) {
     console.error('Error fetching issues:', error);
-    return [];
+    return {
+      data: [],
+      pagination: { total: 0, page: 1, pageSize: 10, totalPages: 0 },
+    };
   }
 });
 

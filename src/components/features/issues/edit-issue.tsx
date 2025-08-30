@@ -19,9 +19,6 @@ import { toast } from 'sonner';
 export default function UpdateIssue({ issue }: { issue: IssueType }) {
   const router = useRouter();
 
-  console.log('Editing issue Id:', issue.id);
-  console.log('Editing issue:', issue);
-
   const form = useForm<Issue>({
     resolver: zodResolver(issueSchema),
     defaultValues: {
@@ -36,8 +33,6 @@ export default function UpdateIssue({ issue }: { issue: IssueType }) {
   });
 
   const onSubmit = async (data: Issue) => {
-    console.log('Submitting update:', data);
-    // TODO: Call your update API here
     try {
       const response = await update(issue.id, data);
       if (response.success) {

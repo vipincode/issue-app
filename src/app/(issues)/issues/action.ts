@@ -1,7 +1,7 @@
 'use server';
 
 import { createIssue, deleteIssue, getAllIssue, getIssueById, updateIssue } from '@/dal/issues/issue.dal';
-import { IssueResponse, IssuesResponse } from '@/dal/issues/issue.type';
+import { GetIssuesOptions, IssueResponse, IssuesResponse } from '@/dal/issues/issue.type';
 import { getCurrentUser } from '@/dal/users/user.dal';
 import { mockDelay } from '@/lib/utils';
 import { Issue, issueSchema } from '@/schemas/issue.schema';
@@ -44,21 +44,34 @@ export const issue = async (data: Issue): Promise<IssuesResponse> => {
   }
 };
 
-export const getIssues = async (): Promise<IssuesResponse> => {
+export const getIssues = async ({
+  page = 1,
+  pageSize = 10,
+  sort,
+  status,
+}: GetIssuesOptions): Promise<IssuesResponse> => {
   try {
-    const result = await getAllIssue();
+    const result = await getAllIssue({ page, pageSize, sort, status });
 
-    if (!result || result.length === 0) {
+    if (!result || result.data.length === 0) {
       return {
         success: true,
         message: 'No issues found',
         data: [],
+        pagination: result?.pagination ?? {
+          total: 0,
+          page,
+          pageSize,
+          totalPages: 0,
+        },
       };
     }
+
     return {
       success: true,
       message: 'Issues fetched successfully',
-      data: result,
+      data: result.data,
+      pagination: result.pagination,
     };
   } catch (error) {
     console.error('Error fetching issues:', error);

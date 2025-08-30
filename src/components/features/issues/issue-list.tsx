@@ -11,12 +11,14 @@ import { format } from 'date-fns';
 import { useTransition } from 'react';
 import { deleteIssueById } from '@/app/(issues)/issues/action';
 import { toast } from 'sonner';
+import { Pagination, Status } from '@/dal/issues/issue.type';
 
 interface IssuesListProps {
   issues: Issue[];
+  pagination?: Pagination;
 }
 
-export default function IssuesList({ issues }: IssuesListProps) {
+export default function IssuesList({ issues, pagination }: IssuesListProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -39,6 +41,65 @@ export default function IssuesList({ issues }: IssuesListProps) {
     });
   };
 
+  // ✅ Sorting function
+  const handleSort = (value: string) => {
+    let sortBy = 'createdAt';
+    let order = 'desc';
+
+    switch (value) {
+      case 'newest':
+        sortBy = 'createdAt';
+        order = 'desc';
+        break;
+      case 'oldest':
+        sortBy = 'createdAt';
+        order = 'asc';
+        break;
+      case 'priority':
+        sortBy = 'priority';
+        order = 'asc';
+        break;
+      case 'status':
+        sortBy = 'status';
+        order = 'asc';
+        break;
+    }
+
+    router.push(`/issues?page=1&sortBy=${sortBy}&order=${order}`);
+    router.refresh();
+  };
+
+  // Filter function
+  const handleFilter = (value: string) => {
+    const statusValue = value.toUpperCase() as Status;
+
+    // Default sorting depending on filter
+    let sortBy: 'createdAt' | 'priority' | 'status' = 'createdAt';
+    let order: 'asc' | 'desc' = 'desc';
+
+    switch (statusValue) {
+      case 'OPEN':
+        sortBy = 'createdAt';
+        order = 'desc';
+        break;
+      case 'IN_PROGRESS':
+        sortBy = 'createdAt';
+        order = 'asc';
+        break;
+      case 'RESOLVED':
+        sortBy = 'createdAt';
+        order = 'asc';
+        break;
+      case 'CLOSED':
+        sortBy = 'priority';
+        order = 'asc';
+        break;
+    }
+
+    router.push(`/issues?page=1&status=${statusValue}&sortBy=${sortBy}&order=${order}`);
+    router.refresh();
+  };
+
   return (
     <IssuePageLayout title="Issues" subtitle="Manage and track all project issues">
       <div className="space-y-6">
@@ -47,7 +108,7 @@ export default function IssuesList({ issues }: IssuesListProps) {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
-              <Select>
+              <Select onValueChange={handleFilter}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="All Issues" />
                 </SelectTrigger>
@@ -61,7 +122,7 @@ export default function IssuesList({ issues }: IssuesListProps) {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">Sort:</span>
-              <Select>
+              <Select onValueChange={handleSort}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Newest First" />
                 </SelectTrigger>
@@ -210,12 +271,22 @@ export default function IssuesList({ issues }: IssuesListProps) {
 
         {/* Pagination */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="text-sm text-gray-600 dark:text-gray-400">Showing 1-3 of 3 issues</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            Showing {pagination?.page} - {pagination?.totalPages} of {pagination?.total} issues
+          </div>
           <div className="flex space-x-2">
-            <Button variant="outline" disabled>
+            <Button
+              variant="outline"
+              disabled={!pagination || pagination.page === 1}
+              onClick={() => router.push(`/issues?page=${pagination!.page - 1}`)}
+            >
               Previous
             </Button>
-            <Button variant="outline" disabled>
+            <Button
+              variant="outline"
+              disabled={!pagination || pagination.page === pagination.totalPages}
+              onClick={() => router.push(`/issues?page=${pagination!.page + 1}`)}
+            >
               Next
             </Button>
           </div>
