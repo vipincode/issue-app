@@ -15,6 +15,9 @@ import { IssueType } from '@/dal/issues/issue.type';
 import { Textarea } from '@/components/ui/textarea';
 import { update } from '@/app/(issues)/issues/action';
 import { toast } from 'sonner';
+import { useState } from 'react';
+import React from 'react';
+import { useArrayInput } from '@/lib/hooks';
 
 export default function UpdateIssue({ issue }: { issue: IssueType }) {
   const router = useRouter();
@@ -169,31 +172,19 @@ export default function UpdateIssue({ issue }: { issue: IssueType }) {
           <FormField
             control={form.control}
             name="labels"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Labels</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="bug, feature, urgent"
-                    value={Array.isArray(field.value) ? field.value.join(', ') : field.value || ''}
-                    onChange={(e) => {
-                      // let the user type freely
-                      field.onChange(e.target.value);
-                    }}
-                    onBlur={(e) => {
-                      // when leaving the field, convert string → array
-                      const arr = e.target.value
-                        .split(',')
-                        .map((s) => s.trim())
-                        .filter(Boolean);
-                      field.onChange(arr);
-                    }}
-                  />
-                </FormControl>
-                <FormDescription>Comma-separated tags to categorize the issue</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const { inputValue, handleChange } = useArrayInput(field);
+              return (
+                <FormItem>
+                  <FormLabel>Labels</FormLabel>
+                  <FormControl>
+                    <Input placeholder="bug, feature, urgent" value={inputValue} onChange={handleChange} />
+                  </FormControl>
+                  <FormDescription>Comma-separated tags to categorize the issue</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
 
           {/* Action Buttons */}

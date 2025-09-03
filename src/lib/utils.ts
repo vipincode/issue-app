@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { formatDistanceToNow } from 'date-fns';
+import { FieldValues, UseControllerReturn } from 'react-hook-form';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
