@@ -27,7 +27,7 @@ export const login = async (data: Login): Promise<ActionResponse> => {
 
     // Find user by email
     const user = await getUserByEmail(data.email);
-    console.log(user, 'User exists');
+
     if (!user) {
       return {
         success: false,

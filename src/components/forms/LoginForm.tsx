@@ -24,8 +24,6 @@ export function LoginForm() {
   const onSubmit = async (data: Login) => {
     try {
       const result = await login(data);
-      console.log(result.success, 'Success');
-      console.log(result.error, 'Error');
       if (result.success) {
         toast.success('Login successful');
         router.push(routes.issues.home);
@@ -76,8 +74,13 @@ export function LoginForm() {
           </Button>
         </div>
 
-        <Button type="submit" className="w-full" size="lg">
-          Sign in
+        <Button
+          type="submit"
+          className="w-full"
+          size="lg"
+          disabled={!form.formState.isValid || form.formState.isSubmitted}
+        >
+          {form.formState.isSubmitting ? 'Signing in...' : 'Sign in'}
         </Button>
 
         <div className="text-center">

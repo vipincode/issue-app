@@ -8,7 +8,7 @@ const IssuesLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='className="min-h-screen bg-background"'>
-      <Header user={user} />
+      <Header user={user && user} />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">{children}</main>
       <Footer />
     </div>

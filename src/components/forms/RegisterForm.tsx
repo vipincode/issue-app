@@ -101,8 +101,14 @@ export function RegisterForm() {
           )}
         />
 
-        <Button type="submit" className="w-full" size="lg">
+        <Button
+          type="submit"
+          className="w-full"
+          size="lg"
+          disabled={!form.formState.isValid || form.formState.isSubmitted}
+        >
           Create account
+          {form.formState.isSubmitting ? ' Creating account...' : ' Create account'}
         </Button>
 
         <div className="text-center">
