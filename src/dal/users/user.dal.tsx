@@ -26,9 +26,9 @@ export const getCurrentUser = cache(async () => {
   if (!session) return null;
 
   // Skip DB query during prerendering in production build
-  if (typeof window === 'undefined' && process.env.NEXT_PHASE === 'phase-production-build') {
-    return null;
-  }
+  // if (typeof window === 'undefined' && process.env.NEXT_PHASE === 'phase-production-build') {
+  //   return null;
+  // }
 
   await mockDelay(700);
 
